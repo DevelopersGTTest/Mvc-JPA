@@ -1,5 +1,9 @@
 package com.example.app.models.dao;
 
-public class IClienteDao {
+import java.util.List;
+import com.example.app.models.entity.Cliente;
 
+public interface IClienteDao {
+
+	public List<Cliente> findAll();
 }
