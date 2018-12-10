@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
-import com.example.app.models.dao.IClienteDao;
 import com.example.app.models.entity.Cliente;
+import com.example.app.models.service.IClienteService;
 
 @Controller
 public class ClienteController {
 	
 	@Autowired
-	private IClienteDao clienteDao;
+	private IClienteService clienteService;
 	
 	@RequestMapping(value="listar" , method=RequestMethod.GET)
 	public String listar(Model model) {
 		model.addAttribute("titulo", "listado clientes");
-		model.addAttribute("clientes", clienteDao.findAll());
+		model.addAttribute("clientes", clienteService.findAll());
 		return "listar";
 	}
 	
@@ -47,7 +47,7 @@ public class ClienteController {
 			return "form";
 		}
 		
-		clienteDao.save(cliente);
+		clienteService.save(cliente);
 		return "redirect:listar";
 	}
 	
@@ -57,7 +57,7 @@ public class ClienteController {
 		Cliente cliente = null;
 		
 		if(id > 0) {
-			cliente = clienteDao.finOne(id);
+			cliente = clienteService.finOne(id);
 		}else {
 			return "redirect:listar";
 		}
@@ -71,7 +71,7 @@ public class ClienteController {
 	public String eliminar(@PathVariable(value="id") Long id) {
 		
 		if(id > 0) {
-			clienteDao.eliminar(id);
+			clienteService.eliminar(id);
 		}
 
 		return "redirect:/listar";
