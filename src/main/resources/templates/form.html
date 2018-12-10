@@ -7,26 +7,27 @@
 </head>
 <body>
 
+<div class="container">
 	<form th:action="@{/form}" th:object="${cliente}" method="post">
 		<table>
 			<tr>
 				<td>Nombre</td>
-				<td><input type="text" th:field="*{nombre}" /></td>
+				<td><input type="text" th:field="*{nombre}" class="form-control" /></td>
 			</tr>
 			<tr>
 				<td>Apellido</td>
-				<td><input type="text" th:field="*{apellido}" /></td>
+				<td><input type="text" th:field="*{apellido}" class="form-control" /></td>
 			</tr>
 			<tr>
 				<td>Email</td>
-				<td><input type="text" th:field="*{email}" /></td>
+				<td><input type="text" th:field="*{email}" class="form-control" /></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="Guardar" /></td>
+				<td><input type="submit" value="Guardar" class="form-control"  /></td>
 			</tr>
 		</table>
 			<input type="hidden" th:field="*{id}" />
 	</form>
-
+</div>
 </body>
 </html>
