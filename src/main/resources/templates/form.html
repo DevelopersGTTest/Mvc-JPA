@@ -13,14 +13,17 @@
 			<tr>
 				<td>Nombre</td>
 				<td><input type="text" th:field="*{nombre}" class="form-control" /></td>
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
 			</tr>
 			<tr>
 				<td>Apellido</td>
 				<td><input type="text" th:field="*{apellido}" class="form-control" /></td>
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
 			</tr>
 			<tr>
 				<td>Email</td>
 				<td><input type="text" th:field="*{email}" class="form-control" /></td>
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>	
 			</tr>
 			<tr>
 				<td><input type="submit" value="Guardar" class="form-control"  /></td>
