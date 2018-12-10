@@ -14,4 +14,7 @@ public interface IClienteDao {
 	//Editar un registro
 	public Cliente finOne(Long id);
 	
+	//Eliminar un registro
+	public void eliminar(Long id);
+	
 }

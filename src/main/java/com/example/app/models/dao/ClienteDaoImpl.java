@@ -38,6 +38,12 @@ public class ClienteDaoImpl implements IClienteDao {
 	public Cliente finOne(Long id) {
 		return em.find(Cliente.class, id);
 	}
-	
 
+	@Override
+	@Transactional
+	public void eliminar(Long id) {
+		Cliente cliente = finOne(id);
+		em.remove(cliente);
+	}
+	
 }
