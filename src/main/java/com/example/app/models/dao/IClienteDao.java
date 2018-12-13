@@ -1,20 +1,10 @@
 package com.example.app.models.dao;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
+
 import com.example.app.models.entity.Cliente;
 
-public interface IClienteDao {
+public interface IClienteDao extends CrudRepository<Cliente, Long> {
 	
-	//Listar los registros
-	public List<Cliente> findAll();
-	
-	//Guardar un registo
-	public void save(Cliente cliente);
-	
-	//Editar un registro
-	public Cliente finOne(Long id);
-	
-	//Eliminar un registro
-	public void eliminar(Long id);
 	
 }
