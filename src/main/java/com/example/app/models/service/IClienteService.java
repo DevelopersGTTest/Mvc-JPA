@@ -2,12 +2,19 @@ package com.example.app.models.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.example.app.models.entity.Cliente;
 
 public interface IClienteService {
 	
-	//Listar los registros
+		//Listar los registros
 		public List<Cliente> findAll();
+		
+		//Paginando los resultados
+		public Page<Cliente> findAll(Pageable pagable  );
+		
 		
 		//Guardar un registo
 		public void save(Cliente cliente);
