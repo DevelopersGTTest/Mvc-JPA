@@ -11,7 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.app.models.entity.Cliente;
 import com.example.app.models.service.IClienteService;
@@ -41,24 +41,26 @@ public class ClienteController {
 	
 	
 	@RequestMapping(value="/form", method=RequestMethod.POST)
-	public String guardar(@Valid Cliente cliente, BindingResult result) {
+	public String guardar(@Valid Cliente cliente, BindingResult result, RedirectAttributes flash ) {
 		
 		if(result.hasErrors()) {
 			return "form";
 		}
 		
 		clienteService.save(cliente);
+		flash.addFlashAttribute("success", "Registro creado exitosamnete");
 		return "redirect:listar";
 	}
 	
 	@RequestMapping(value="/form/{id}")
-	public String editar(@PathVariable(value="id") Long id, Map<String, Object> model) {
+	public String editar(@PathVariable(value="id") Long id, Map<String, Object> model, RedirectAttributes flash ) {
 		
 		Cliente cliente = null;
 		
 		if(id > 0) {
 			cliente = clienteService.finOne(id);
 		}else {
+			flash.addFlashAttribute("error", "Error al editar el registro");
 			return "redirect:listar";
 		}
 		
