@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.app.models.entity.Cliente;
 import com.example.app.models.service.IClienteService;
+import com.example.app.util.paginator.PageRender;
 
 @Controller
 public class ClienteController {
@@ -26,14 +27,17 @@ public class ClienteController {
 	@Autowired
 	private IClienteService clienteService;
 	
-	@RequestMapping(value="listar" , method=RequestMethod.GET)
+	@RequestMapping(value="/listar" , method=RequestMethod.GET)
 	public String listar(@RequestParam(name="page", defaultValue="0") int page,  Model model) {
 		
-		Pageable pagableRequest = new  PageRequest(page, 4);
+		Pageable pageRequest = new PageRequest(page, 4);
+
+		Page<Cliente> clientes = clienteService.findAll(pageRequest);
 		
-		Page<Cliente> clientes = clienteService.findAll(pagableRequest);
-		model.addAttribute("titulo", "listado clientes");
+		PageRender<Cliente> pageRender = new PageRender<Cliente>("/listar", clientes);
+		model.addAttribute("titulo", "Listado de clientes");
 		model.addAttribute("clientes", clientes);
+		model.addAttribute("page", pageRender);
 		return "listar";
 	}
 	

@@ -97,7 +97,7 @@ public class PageRender<T> {
 		return page.hasNext();
 	}
 	
-	public boolean isHasPrevius() {
+	public boolean isHasPrevious() {
 		return page.hasPrevious();
 	}
 }
